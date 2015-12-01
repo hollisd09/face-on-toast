@@ -6,7 +6,7 @@ define(function(require) {
   var populateNewUserView = require("populateNewUserView");
   var moviesFB = require("movies-to-FB");
 
-  var ref = new Firebase("https://faceontoast.firebaseio.com");
+  var ref = new Firebase("https://movie-history-djs.firebaseio.com");
 
   return {
     register: function (event) {

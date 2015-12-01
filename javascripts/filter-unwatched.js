@@ -9,11 +9,21 @@ define(function(require) {
 
   return {
     filterUnwatched: function (e) {
-      var movie = $(this).parent('.movie');
-      post('/movie/' + $(this).data('id') + '/unwatched', function(data){
-        movie.fadeOut();
-      });
+      console.log("I run");
+      console.log("things");
+
+      $.ajax({ 
+            type: "GET",
+            dataType: "json",
+            url: "https://movie-history-djs.firebaseio.com/"})
+      
+      
+      // var movie = $(this).parent('.movie');
+      // post('/movie/' + $(this).data('id') + '/unwatched', function(data){
+      //   movie.fadeOut();
+      // });
       popUnwatched.popUnwatched();  
     }
   };
 });
+

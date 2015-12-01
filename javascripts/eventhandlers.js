@@ -72,6 +72,7 @@ define(function(require) {
   //filters user's movies to show only their movies marked 'unwatched', when "unwatched" filter is clicked.
   $("body").on('click', "#unwatched", function() {
     filterUnwatched.filterUnwatched();
+    
   });
 
   //filters user's movies to show only their favorited (5 stars) movies, when "favorites" filter is clicked.

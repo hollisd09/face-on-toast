@@ -8,10 +8,12 @@ define(function(require) {
 
   $("body").on('click', '.add-movie', function(e){
     var movieRefID = this.id;
-    console.log("movieRefID", movieRefID );
+
 // Check to see if the movie already exists in FB database
 // get movieRef via IMDBid path in FB
-    var movieRef = new Firebase('https://faceontoast.firebaseio.com/movies/' + movieRefID);
+    var movieRef = new Firebase('https://movie-history-djs.firebaseio.com/users/' + movieRefID);
+
+
     
 // if path !== invalid
   // Ajax call to main OMDB for movie information
@@ -30,18 +32,20 @@ define(function(require) {
             var year = data.Year;
             var actors = data.Actors;
             var imdbID = data.imdbID;
-              var actorsArray = actors.split(", ");
+            var actorsArray = actors.split(", ");
 
   //Flash results to FB
         // build object to push to FB from data 
         var objectforFB = {
           'Title': title,
           'Year': year,
-          'Actors': actorsArray
-  
+          'Actors': actorsArray,
+          'imdbID': imdbID,
+          'watched': false,
+          'rating': 0
 };
-  console.log("objectforFB", objectforFB );
-  var newMovieRef = new Firebase('https://faceontoast.firebaseio.com/movies/'+imdbID);      
+
+  var newMovieRef = new Firebase('https://movie-history-djs.firebaseio.com/users/'+userStorage.getUid());      
     newMovieRef.set(objectforFB);
 
         
@@ -54,21 +58,18 @@ define(function(require) {
 
 
 
+    var nameRef = new Firebase('https://movie-history-djs.firebaseio.com/users/' + userStorage.getUid());
 
-    console.log("click", this.id);
-    var nameRef = new Firebase('https://faceontoast.firebaseio.com/users/' + userStorage.getUid());
-    console.log("userStorage.getUid()", userStorage.getUid());
-
-    nameRef.child(movieRefID).set({
-      'watched':false,
-      'rating': 0
-      });
-    $(this).parent().remove();
+    // nameRef.child(movieRefID).set({
+    //   'watched':false,
+    //   'rating': 0
+    //   });
+ 
   }); /* end of 'add' movie button eventhandler */
 
   return {
     showAddedMovies: function(profileID) {
-      var ref = new Firebase("https://faceontoast.firebaseio.com");
+      var ref = new Firebase("https://movie-history-djs.firebaseio.com");
 
       ref.child("users").once("value", function(snapshot) {
         var users = snapshot.val();
@@ -76,10 +77,17 @@ define(function(require) {
 
         var addedMovies = [];
         for (var key in users) {
-          var userObj = users[key];
+
+          var userObj = users[key];         
           userObj.key = key;
           userObj.addedMovies = addedMovies;
+
+          addedMovies.push(userObj);  
           moviesArray[moviesArray.length] = userObj;
+
+          console.log("userObj", userObj);
+          console.log("addedMovies", addedMovies);
+
         } /* end of for loop */ 
       }); /* end of snapshot */
     } /* end of showAddedMovies function */

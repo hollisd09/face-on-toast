@@ -5,7 +5,7 @@ define(function(require){
 	deleteIt: function(e){
 
 
-	// var byeRef = new Firebase("https://faceontoast.firebaseio.com/users/"+userStorage.getUid()+"/movieRefs/"+);
+	// var byeRef = new Firebase("https://movie-history-djs.firebaseio.com/users/"+userStorage.getUid()+"/movieRefs/"+);
 	
 	// byeRef.remove();
 	console.log("success!");	}

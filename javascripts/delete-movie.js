@@ -12,7 +12,7 @@ define(function(require) {
   
     deleteMovie: function(parent) {
       var deferredDelete = Q.defer();
-      var deleteRef = new Firebase ("https://faceontoast.firebaseio.com/users/" + userStorage.getUid() + "/" + parent);
+      var deleteRef = new Firebase ("https://movie-history-djs.firebaseio.com/users/" + userStorage.getUid() + "/" + parent);
       deleteRef.remove();
 
     return deferredDelete.promise; 

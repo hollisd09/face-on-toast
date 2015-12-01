@@ -7,7 +7,7 @@ define(function(require) {
   var moviesFB = require("movies-to-FB");
 
   //get a reference to our Firebase app
-  var ref = new Firebase("https://faceontoast.firebaseio.com");
+  var ref = new Firebase("https://movie-history-djs.firebaseio.com");
 
   //log in user that is already registered
   return {

@@ -8,7 +8,6 @@ define(function(require) {
     },
     setUid: function (newId) {
       uid = newId.uid;
-    console.log("uid", newId);
     },
     getKey: function () {
       return uKey;

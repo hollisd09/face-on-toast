@@ -45,7 +45,7 @@ define(function(require) {
           'rating': 0
 };
 
-  var newMovieRef = new Firebase('https://movie-history-djs.firebaseio.com/users/'+userStorage.getUid());      
+  var newMovieRef = new Firebase('https://movie-history-djs.firebaseio.com/users/'+userStorage.getUid() +'/'+ imdbID);      
     newMovieRef.set(objectforFB);
 
         
@@ -60,10 +60,6 @@ define(function(require) {
 
     var nameRef = new Firebase('https://movie-history-djs.firebaseio.com/users/' + userStorage.getUid());
 
-    // nameRef.child(movieRefID).set({
-    //   'watched':false,
-    //   'rating': 0
-    //   });
  
   }); /* end of 'add' movie button eventhandler */
 
